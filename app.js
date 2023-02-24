@@ -27,7 +27,7 @@ const BookRank = mongoose.model('BookRank', bookRankSchema);
 
 // api endpoint to get all books and their ranks
 app.get('/books', async (req, res) => {
-    const books = await BookRank.find().sort({ bookRank: 1 });
+    const books = await BookRank.find().sort({ bookRank: 1 }).limit(10);;
     res.send(books);
   });
 
@@ -49,7 +49,7 @@ app.post('/books', async (req, res) => {
     await BookRank.create({ bookName, bookRank });
   }
 
-  const books = await BookRank.find().sort({ bookRank: 1 });
+  const books = await BookRank.find().sort({ bookRank: 1 }).limit(10);
   res.send(books);
 });
 
