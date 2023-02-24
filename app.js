@@ -49,7 +49,8 @@ app.post('/books', async (req, res) => {
     await BookRank.create({ bookName, bookRank });
   }
 
-  res.send('Book added/updated successfully');
+  const books = await BookRank.find().sort({ bookRank: 1 });
+  res.send(books);
 });
 
 const port = process.env.PORT || 3000;
